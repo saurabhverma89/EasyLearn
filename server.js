@@ -12,7 +12,9 @@ app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
-app.use(express.static('public'))
+//app.use('/static', express.static('public'))
+app.use('/static', express.static(__dirname + '/public'));
+//app.use(express.static('./'))
 
 const mongoose = require('mongoose')
 console.log(process.env.DATABASE_URL)
@@ -20,7 +22,6 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
 const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
-
 
 app.use('/', indexRouter)
 

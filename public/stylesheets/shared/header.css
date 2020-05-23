@@ -1,0 +1,26 @@
+.navbar.my-navbar{
+	background-color: #16697a;
+}
+
+.my-navbar .navbar-brand{
+	padding-top:0;
+	padding-bottom:0;
+}
+
+.my-navbar a.navbar-brand i{
+	font-size:2rem;
+}
+
+.my-navbar .navbar-collapse {
+	color:#fff;
+}
+
+.my-navbar .form-inline{
+	justify-content: flex-end;
+}
+
+.my-navbar select.form-control{
+	padding: .1rem .5rem .1rem .2rem;
+	height: calc(.8em + .8rem + 2px);
+    font-size: 1rem;
+}
