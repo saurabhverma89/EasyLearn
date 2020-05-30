@@ -24,3 +24,7 @@
 	height: calc(.8em + .8rem + 2px);
     font-size: 1rem;
 }
+.inner-container{
+	margin-top: 30px;
+	height: auto;
+}

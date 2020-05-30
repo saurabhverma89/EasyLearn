@@ -4,3 +4,26 @@
 .error-Message{
     color: red;
 }
+
+.mg-top-sm{
+    margin-top: 5px;
+}
+
+.mg-top-md{
+    margin-top: 15px;
+}
+
+.mg-top-lg{
+    margin-top: 30px;
+}
+
+.page-title{
+    font-size: 1.5em;
+    padding-bottom: 10px;
+}
+
+.required::after{
+    content: '*';
+    color: #f00;
+    padding-left: 5px;
+}

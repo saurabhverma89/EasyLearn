@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-sm-6 page-title">Languages</div>
+    <div class="col-sm-6 text-right mg-top-sm">
+        <a href="/language/new" title="New Language">New Language</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">Sr.</th>
+                        <th>Language Name</th>
+                        <th>Language Code</th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(Languages!=null){ for(let i = 0; i < Languages.length; i++) {%>
+                        <tr>
+                            <td class="text-center"><%= (i+1) %></td>
+                            <td><%= Languages[i].LanguageName %></td>
+                            <td><%= Languages[i].LanguageCode %></td>
+                            <td class="text-center"><a href='/language/edit/<%= Languages[i]._id %>' title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                            <td class="text-center"><a href='/language/delete/<%= Languages[i]._id %>' title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                        </tr>
+                    <% }} %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -5,8 +5,10 @@ if(process.env.NODE_ENV !== 'production'){
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
+const bodyParser = require('body-parser')
 const indexRouter = require('./routes/index')
-
+const languageRouter = require('./routes/language')
+const easyLearnAPI = require('./models/easyLearnAPI')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -15,14 +17,19 @@ app.use(expressLayouts)
 //app.use('/static', express.static('public'))
 app.use('/static', express.static(__dirname + '/public'));
 //app.use(express.static('./'))
+app.use(bodyParser.urlencoded({ limit:'10mb', extended: false }))
 
-const mongoose = require('mongoose')
-console.log(process.env.DATABASE_URL)
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
-const db = mongoose.connection
-db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to Mongoose'))
+getMyLanguages()
 
 app.use('/', indexRouter)
+app.use('/language', languageRouter)
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000);
+
+async function getMyLanguages() {
+    try{
+        app.locals.MyLanguages = await easyLearnAPI.getLanguages()
+    }catch(err){
+        console.log(err)
+    }
+}

@@ -1,9 +1,4 @@
 
-
-.main-container{
-	margin-top: 30px;
-}
-
 .table.table-striped.my-table thead tr{
 	background-color: #ffa62b;
 }
@@ -51,10 +46,18 @@
 
 .my-table-box{
 	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
-	padding:15px;
+	padding: 15px;
 	margin-top: 20px;
 	border-radius: 8px;
 }
 
+.my-table tfoot td{
+	text-align: center;
+}
 
-
+#divSwapLang{
+	padding-top: 37px;
+	font-size: 18px;
+	cursor: pointer;
+	color:#666;
+}
