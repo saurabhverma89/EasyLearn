@@ -1,0 +1,26 @@
+<input type="hidden" name="_id" value="<%= Word._id %>" />
+<div class="row">
+    <div class="col-sm-4 text-right"><label class="<%= (locals.IsDelete)?"":"required" %>">Category</label></div>
+    <div class="col-sm-5">
+        <select class="form-control" id="selCategory" required name="categoryId" <%= (locals.IsDelete)?"disabled":"" %>>
+            <option value="">Please Select</option>
+            <% for(let i = 0; i < Category.length; i++) { %>
+                <% if(locals.CategorySelected == Category[i]._id) {%>
+                    <option value="<%= Category[i]._id %>" selected><%= Category[i].CategoryName %></option>
+                <% } else{ %>
+                    <option value="<%= Category[i]._id %>"><%= Category[i].CategoryName %></option>
+                <% }%>               
+            <% } %>
+        </select>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm-4 text-right"><label class="<%= (locals.IsDelete)?"":"required" %>">Word Text</label></div>
+    <div class="col-sm-5"><input type="text" class="form-control" name="wordText" required
+        <%= (locals.IsDelete)?"disabled":"" %> value="<%= Word.WordText %>" /> </div>
+</div>
+<div class="row mg-top-md">
+    <div class="col-sm-9 text-right">
+        <button type="submit" class="btn btn-light mb-2">Submit</button>
+    </div>
+</div>

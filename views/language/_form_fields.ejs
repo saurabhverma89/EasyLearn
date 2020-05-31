@@ -1,11 +1,13 @@
 <div class="row">
     <input type="hidden" name="_id" value="<%= Language._id %>" />
-    <div class="col-sm-4 text-right required">Language Name</div>
-    <div class="col-sm-5"><input type="text" class="form-control" name="languageName" required value="<%= Language.LanguageName %>" /> </div>
+    <div class="col-sm-4 text-right"><label class="<%= (locals.IsDelete)?"":"required" %>">Language Name</label></div>
+    <div class="col-sm-5"><input type="text" class="form-control" name="languageName" 
+        <%= (locals.IsDelete)?"disabled":"" %> required value="<%= Language.LanguageName %>" /> </div>
 </div>
 <div class="row mg-top-md">
-    <div class="col-sm-4 text-right required">Language Code</div>
-    <div class="col-sm-5"><input type="text" class="form-control" name="languageCode" required value="<%= Language.LanguageCode %>" /> </div>
+    <div class="col-sm-4 text-right"><label class="<%= (locals.IsDelete)?"":"required" %>">Language Code</label></div>
+    <div class="col-sm-5"><input type="text" class="form-control" name="languageCode" 
+        <%= (locals.IsDelete)?"disabled":"" %> required value="<%= Language.LanguageCode %>" /> </div>
 </div>
 <div class="row mg-top-md">
     <div class="col-sm-9 text-right">

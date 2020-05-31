@@ -165,8 +165,12 @@ const deleteCategory = async (_id) => {
 function getError(err){
     let _statusCode = '', _message = ''
     if(err != null){
-        _statusCode = err.statusCode
-        if(err.error != null){
+        if(err.statusCode == null){
+            _statusCode = 500
+        }else{
+            _statusCode = err.statusCode
+        }
+        if(err.error != null && err.error.message != null){
            _message = err.error.message
         }
         else{
@@ -177,5 +181,81 @@ function getError(err){
     return {statusCode: _statusCode, message: _message}
 }
 
+const getWordsByCategory = async (categoryId) => {
+    try{
+        let response =  await Request.get(`${apiURL}word/Category/${categoryId}`, { json: true })
+        return response
+    }catch(err){
+        throw getError(err)
+    }
+}
+
+const createWord = async (Word) => {
+    try{
+        let options = {
+            method: 'POST',
+            uri: `${apiURL}word`,
+            body: {
+                CategoryId: Word.CategoryId,
+                WordText: Word.WordText
+            },
+            json: true,
+        };
+        const response = await Request(options)
+        return response
+    }
+    catch(err){
+        throw getError(err)
+    }
+}
+
+const getWordById = async (id) => {
+    let response
+    await Request.get(`${apiURL}word/${id}`, { json:true })
+    .then(res =>{
+        response = res
+    })
+    .catch(err => {
+        throw getError(err)
+    })
+    return response
+}
+
+const updateWord = async (Word) => {
+    try{
+        let options = {
+            method: 'PATCH',
+            uri: `${apiURL}word/${Word._id}`,
+            body: {
+                CategoryId: Word.CategoryId,
+                WordText: Word.WordText
+            },
+            json: true
+        };
+        const response = await Request(options)
+        return response
+    }
+    catch(err){
+        throw getError(err)
+    }
+}
+
+const deleteWord = async (_id) => {
+    try{
+        let options = {
+            method: 'DELETE',
+            uri: `${apiURL}word/${_id}`,
+            json: true
+        };
+        const response = await Request(options)
+        return response
+    }
+    catch(err){
+        console.log(err.message)
+        throw getError(err)
+    }
+}
+
 module.exports = {getTranslations, getLanguages, getLanguageById, createLanguage, updateLanguage, deleteLanguage,
-                    getCategories, getCategoryById, createCategory, updateCategory, deleteCategory}
+                    getCategories, getCategoryById, createCategory, updateCategory, deleteCategory,
+                    getWordsByCategory, createWord, getWordById, updateWord, deleteWord}

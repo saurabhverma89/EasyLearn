@@ -7,7 +7,7 @@
 		<div class="form-group">
 			<label for="selCategory">Select Category</label>
 			<select class="form-control" id="selCategory">
-				<option value="0">Plaese Select</option>
+				<option value="">Plaese Select</option>
 				<% if(Categories!=null){ for ( var i = 0; i < Categories.length; i++ ) { if(Categories[i].CategoryName != 'Language'){%>
 					<option value="<%= Categories[i]._id %>"><%= Categories[i].CategoryName %></option>
 				<% }}} %>
@@ -18,7 +18,7 @@
 		<div class="form-group">
 			<label for="selSourceLang">Translate From</label>
 			<select class="form-control" id="selSourceLang">
-				<option value="0">Plaese Select</option>
+				<option value="">Plaese Select</option>
 				<% if(Languages!=null){ for ( var i = 0; i < Languages.length; i++ ) { %>
 					<option value="<%= Languages[i]._id %>"><%= Languages[i].LanguageName %></option>
 				<% }} %>
@@ -32,7 +32,7 @@
 		<div class="form-group">
 			<label for="selDestLang">Translate In</label>
 			<select class="form-control" id="selDestLang">
-				<option value="0">Plaese Select</option>
+				<option value="">Plaese Select</option>
 				<% if(Languages!=null){ for ( var i = 0; i < Languages.length; i++ ) { %>
 					<option value="<%= Languages[i]._id %>"><%= Languages[i].LanguageName %></option>
 				<% }} %>

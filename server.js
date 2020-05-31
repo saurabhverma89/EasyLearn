@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 const indexRouter = require('./routes/index')
 const languageRouter = require('./routes/language')
 const categoryRouter = require('./routes/category')
+const wordRouter = require('./routes/word')
 const easyLearnAPI = require('./models/easyLearnAPI')
 
 app.set('view engine', 'ejs')
@@ -25,6 +26,7 @@ getMyLanguages()
 app.use('/', indexRouter)
 app.use('/language', languageRouter)
 app.use('/category', categoryRouter)
+app.use('/word', wordRouter)
 
 app.listen(process.env.PORT || 3000);
 

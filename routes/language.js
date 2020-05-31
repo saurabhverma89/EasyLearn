@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const easyLearnAPI = require('../models/easyLearnAPI')
-const languageSchema = require('../models/language')
 const alerts = require('../models/alerts')
 
 router.get('/', async (req, res) => {
@@ -56,7 +55,7 @@ router.post('/edit', async (req, res) => {
 
 router.get('/new', (req, res) => {
     res.render('language/new', {
-        Language: languageSchema,
+        Language: {},
     })
 })
 
@@ -69,7 +68,7 @@ router.post('/new', async (req, res) => {
         }
         const newLanguage = await easyLearnAPI.createLanguage(language)
         res.render('language/new', {
-            Language : languageSchema,
+            Language : {},
             Alert : new alerts.Alert(alerts.alertType.Success, 'New language created').getJson()
         })
     }
@@ -85,6 +84,7 @@ router.get('/delete/:languageId', async (req, res) =>{
     try{
         const language = await easyLearnAPI.getLanguageById(req.params.languageId)
         res.render('language/delete', {
+            IsDelete: true,
             Language: language
         })
     }

@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const easyLearnAPI = require('../models/easyLearnAPI')
-const categorySchema = require('../models/category')
 const alerts = require('../models/alerts')
 
 router.get('/', async (req, res) =>{
@@ -20,7 +19,7 @@ router.get('/', async (req, res) =>{
 
 router.get('/new', (req, res) => {
     res.render('category/new', {
-        Category: categorySchema,
+        Category: {},
     })
 })
 
@@ -32,7 +31,7 @@ router.post('/new', async (req, res) => {
         }
         const newCategory = await easyLearnAPI.createCategory(category)
         res.render('category/new', {
-            Category : categorySchema,
+            Category : {},
             Alert : new alerts.Alert(alerts.alertType.Success, 'New Category created').getJson()
         })
     }
@@ -84,7 +83,8 @@ router.get('/delete/:categoryId', async (req, res) =>{
     try{
         const category = await easyLearnAPI.getCategoryById(req.params.categoryId)
         res.render('category/delete', {
-            Category: category
+            Category: category,
+            IsDelete: true
         })
     }
     catch(err){

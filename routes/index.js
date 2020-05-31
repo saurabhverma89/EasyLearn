@@ -17,16 +17,16 @@ router.get('/', getDefaults, async (req, res) => {
     }
 })
 
+// routes for ajax requests - Begin
 router.get('/getTranslation/:categoryId/:sourceLangId/:destLangId', getDefaults, async (req, res) => {
     try{
         const translations =  await easyLearnAPI.getTranslations(req.params.categoryId, req.params.sourceLangId, req.params.destLangId)
         res.json(translations)
     }catch(err){
-        res.render('errorPage', {
-            Error: err
-        })
+        res.status(err.statusCode).json(err)
     }
 })
+// routes for ajax requests - End
 
 async function getDefaults(req, res, next){
     try{

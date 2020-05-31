@@ -16,16 +16,24 @@ selCategory.addEventListener('change', (e) => {
     getTranslations()
 })
 
-function getTranslations(){
+async function getTranslations(){
     clearTable()
     const categoryId = selCategory.options[selCategory.selectedIndex].value
     const sourceLangId = selSourceLang.options[selSourceLang.selectedIndex].value
     const destLangId = selDestLang.options[selDestLang.selectedIndex].value
-    if(categoryId != "0" && sourceLangId != "0" && destLangId != "0"){
-        fetch(`/getTranslation/${categoryId}/${sourceLangId}/${destLangId}`)
-        .then(res => res.json())
-        .then(data => showTranslations(data))
-        .catch(err => console.error(err))
+    if(categoryId != "" && sourceLangId != "" && destLangId != ""){
+        try{
+            const res = await fetch(`/getTranslation/${categoryId}/${sourceLangId}/${destLangId}`)
+            const jsonRes = await res.json()
+            if(!res.ok){
+                throw jsonRes
+            }
+            else{
+                showTranslations(jsonRes)
+            }
+        }catch(err){
+            console.log(err.message)
+        }
     }
 }
 

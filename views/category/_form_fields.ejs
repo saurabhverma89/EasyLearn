@@ -1,7 +1,8 @@
 <div class="row">
     <input type="hidden" name="_id" value="<%= Category._id %>" />
-    <div class="col-sm-4 text-right required">Category Name</div>
-    <div class="col-sm-5"><input type="text" class="form-control" name="categoryName" required value="<%= Category.CategoryName %>" /> </div>
+    <div class="col-sm-4 text-right"><label class="<%= (locals.IsDelete)?"":"required" %>">Category Name</label></div>
+    <div class="col-sm-5"><input type="text" class="form-control" name="categoryName" required 
+        <%= (locals.IsDelete)?"disabled":"" %> value="<%= Category.CategoryName %>" /> </div>
 </div>
 <div class="row mg-top-md">
     <div class="col-sm-9 text-right">
