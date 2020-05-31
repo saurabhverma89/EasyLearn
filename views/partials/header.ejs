@@ -19,8 +19,8 @@
       <div class="form-inline">
           <label for="ispeak" class="mr-sm-2">My Language</label>
           <select class="form-control" id="ispeak">
-            <% if(locals.MyLanguages!=null){ for ( var i = 0; i < locals.MyLanguages.length; i++ ) { %>
-              <option><%= locals.MyLanguages[i].LanguageName %></option>
+            <% if(MyLanguages!=null){ for ( var i = 0; i < MyLanguages.length; i++ ) { %>
+              <option><%= MyLanguages[i].LanguageName %></option>
             <% }} %>
          </select>
       

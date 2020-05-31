@@ -32,7 +32,7 @@ app.listen(process.env.PORT || 3000);
 
 async function getMyLanguages() {
     try{
-        app.locals.MyLanguages = await easyLearnAPI.getLanguages()
+        MyLanguages = await easyLearnAPI.getLanguages()
     }catch(err){
         console.log(err)
     }
