@@ -8,6 +8,7 @@ const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const indexRouter = require('./routes/index')
 const languageRouter = require('./routes/language')
+const categoryRouter = require('./routes/category')
 const easyLearnAPI = require('./models/easyLearnAPI')
 
 app.set('view engine', 'ejs')
@@ -23,6 +24,7 @@ getMyLanguages()
 
 app.use('/', indexRouter)
 app.use('/language', languageRouter)
+app.use('/category', categoryRouter)
 
 app.listen(process.env.PORT || 3000);
 

@@ -91,15 +91,75 @@ const deleteLanguage = async (_id) => {
 }
 
 const getCategories = async () => {
+    try{
+        let response =  await Request.get(`${apiURL}category`, { json: true })
+        return response
+    }catch(err){
+        throw getError(err)
+    }
+}
+
+const getCategoryById = async (id) => {
     let response
-    await Request.get(`${apiURL}category`, { json: true })
-    .then(res => {
+    await Request.get(`${apiURL}Category/${id}`, { json:true })
+    .then(res =>{
         response = res
     })
     .catch(err => {
         throw getError(err)
     })
     return response
+}
+
+const createCategory = async (Category) => {
+    try{
+        let options = {
+            method: 'POST',
+            uri: `${apiURL}category`,
+            body: {
+                CategoryName: Category.CategoryName
+            },
+            json: true,
+        };
+        const response = await Request(options)
+        return response
+    }
+    catch(err){
+        throw getError(err)
+    }
+}
+
+const updateCategory = async (Category) => {
+    try{
+        let options = {
+            method: 'PATCH',
+            uri: `${apiURL}category/${Category._id}`,
+            body: {
+                CategoryName: Category.CategoryName
+            },
+            json: true
+        };
+        const response = await Request(options)
+        return response
+    }
+    catch(err){
+        throw getError(err)
+    }
+}
+
+const deleteCategory = async (_id) => {
+    try{
+        let options = {
+            method: 'DELETE',
+            uri: `${apiURL}category/${_id}`,
+            json: true
+        };
+        const response = await Request(options)
+        return response
+    }
+    catch(err){
+        throw getError(err)
+    }
 }
 
 function getError(err){
@@ -117,4 +177,5 @@ function getError(err){
     return {statusCode: _statusCode, message: _message}
 }
 
-module.exports = {getTranslations, getLanguages, getLanguageById, createLanguage, updateLanguage, deleteLanguage, getCategories}
+module.exports = {getTranslations, getLanguages, getLanguageById, createLanguage, updateLanguage, deleteLanguage,
+                    getCategories, getCategoryById, createCategory, updateCategory, deleteCategory}

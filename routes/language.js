@@ -69,7 +69,7 @@ router.post('/new', async (req, res) => {
         }
         const newLanguage = await easyLearnAPI.createLanguage(language)
         res.render('language/new', {
-            Language : newLanguage,
+            Language : languageSchema,
             Alert : new alerts.Alert(alerts.alertType.Success, 'New language created').getJson()
         })
     }
@@ -103,7 +103,6 @@ router.post('/delete', async (req, res) => {
             LanguageName : req.body.languageName,
             LanguageCode : req.body.languageCode
         }
-        console.log(language._id)
         await easyLearnAPI.deleteLanguage(language._id)
         res.redirect('/language')
     }

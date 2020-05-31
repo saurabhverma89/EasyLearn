@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-sm-6 page-title">Delete Category</div>
+    <div class="col-sm-6 text-right mg-top-sm">
+        <a href="/category" title="Back to Language List">Back to Category List</a>
+    </div>
+</div>
+<div class="alert alert-warning">
+    <strong>Warning!</strong> Are you sure to delete category?
+  </div>
+<form action="/category/delete" method="POST" class="mg-top-lg">
+    <%- include('_form_fields.ejs') %>
+</form>
