@@ -44,8 +44,8 @@ function showTranslations(data){
         let thead_tr_thSource = document.createElement('th')
         let thead_tr_thDesc = document.createElement('th')
         
-        thead_tr_thSource.innerHTML = `In ${data.SearchCriteria.SourceLanguage}`
-        thead_tr_thDesc.innerHTML = `In ${data.SearchCriteria.DestLanguage}`
+        thead_tr_thSource.innerHTML = `In ${data.SearchCriteria.SourceLanguage} (${data.SearchCriteria.SourceLanguageCode})`
+        thead_tr_thDesc.innerHTML = `In ${data.SearchCriteria.DestLanguage} (${data.SearchCriteria.DestLanguageCode})`
         thead_tr.appendChild(thead_tr_thSource)
         thead_tr.appendChild(thead_tr_thDesc)
         thead.appendChild(thead_tr)

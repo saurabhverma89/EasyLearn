@@ -4,9 +4,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-3">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardropMaster" data-toggle="dropdown">
              Master Data
             </a>
             <div class="dropdown-menu">
@@ -16,13 +16,29 @@
             </div>
           </li>
       </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardropReport" data-toggle="dropdown">
+             Reports
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/reports/language">Language</a>
+              <a class="dropdown-item" href="/reports/category">Category</a>
+              <a class="dropdown-item" href="/reports/word">Word</a>
+            </div>
+          </li>
+      </ul>
       <div class="form-inline">
           <label for="ispeak" class="mr-sm-2">My Language</label>
           <select class="form-control" id="ispeak">
             <% if(MyLanguages!=null){ for ( var i = 0; i < MyLanguages.length; i++ ) { %>
               <option><%= MyLanguages[i].LanguageName %></option>
             <% }} %>
-         </select>
-      
-    </div>  
+         </select>    
+      </div>
+      <div>
+        <form>
+          <!-- <button>Logout</button> -->
+        </form>
+      </div>  
 </nav>

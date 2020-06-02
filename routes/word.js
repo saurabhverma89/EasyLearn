@@ -60,6 +60,7 @@ router.post('/new', getCategories, async (req, res) => {
         const newWord = await easyLearnAPI.createWord(word)
         res.render('word/new', {
             Category: res.Category,
+            CategorySelected: word.CategoryId,
             Word : {},
             Alert : new alerts.Alert(alerts.alertType.Success, 'New word created').getJson()
         })
