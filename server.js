@@ -21,7 +21,7 @@ app.use('/static', express.static(__dirname + '/public'));
 //app.use(express.static('./'))
 app.use(bodyParser.urlencoded({ limit:'10mb', extended: false }))
 
-getMyLanguages()
+//app.use(getMyLanguages)
 
 app.use('/', indexRouter)
 app.use('/language', languageRouter)

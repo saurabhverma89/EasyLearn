@@ -16,7 +16,7 @@
             </div>
           </li>
       </ul>
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto d-none">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardropReport" data-toggle="dropdown">
              Reports
@@ -28,11 +28,11 @@
             </div>
           </li>
       </ul>
-      <div class="form-inline">
+      <div class="form-inline d-none">
           <label for="ispeak" class="mr-sm-2">My Language</label>
           <select class="form-control" id="ispeak">
-            <% if(MyLanguages!=null){ for ( var i = 0; i < MyLanguages.length; i++ ) { %>
-              <option><%= MyLanguages[i].LanguageName %></option>
+            <% if(locals.MyLanguages!=null){ for ( var i = 0; i < locals.MyLanguages.length; i++ ) { %>
+              <option><%= locals.MyLanguages[i].LanguageName %></option>
             <% }} %>
          </select>    
       </div>
