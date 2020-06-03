@@ -23,7 +23,11 @@ app.use(bodyParser.urlencoded({ limit:'10mb', extended: false }))
 
 //app.use(getMyLanguages)
 
-app.use('/', indexRouter)
+//app.use('/', indexRouter)
+app.use('/', (req, res) =>{
+    res.send('Hello')
+})
+
 app.use('/language', languageRouter)
 app.use('/category', categoryRouter)
 app.use('/word', wordRouter)
