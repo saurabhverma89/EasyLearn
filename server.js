@@ -3,6 +3,7 @@ if(process.env.NODE_ENV !== 'production'){
 }
 
 const express = require('express')
+const router = express.Router()
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
@@ -24,13 +25,15 @@ app.use(bodyParser.urlencoded({ limit:'10mb', extended: false }))
 //app.use(getMyLanguages)
 
 //app.use('/', indexRouter)
-app.use('/', (req, res) =>{
-    res.send('Hello')
-})
 
 app.use('/language', languageRouter)
 app.use('/category', categoryRouter)
 app.use('/word', wordRouter)
+
+app.use('/a', (req, res) => {
+    res.send('Hello')
+})
+
 
 app.listen(process.env.PORT || 3000);
 
