@@ -39,6 +39,7 @@ async function getTranslations(){
 
 function showTranslations(data){
     try{
+        clearTable()
         let thead = document.createElement('thead')
         let thead_tr = document.createElement('tr')
         let thead_tr_thSource = document.createElement('th')
