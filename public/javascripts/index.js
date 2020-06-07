@@ -3,6 +3,7 @@ const selDestLang = document.getElementById('selDestLang')
 const selCategory = document.getElementById('selCategory')
 const tblTrans= document.getElementById('tblTrans')
 const divSwapLang = document.getElementById('divSwapLang')
+const myLanguageId = document.getElementById('h_myLanguageId').value
 
 selSourceLang.addEventListener('change', (e)  => {
     getTranslations()
@@ -23,7 +24,7 @@ async function getTranslations(){
     const destLangId = selDestLang.options[selDestLang.selectedIndex].value
     if(categoryId != "" && sourceLangId != "" && destLangId != ""){
         try{
-            const res = await fetch(`/getTranslation/${categoryId}/${sourceLangId}/${destLangId}`)
+            const res = await fetch(`/getTranslation/${categoryId}/${sourceLangId}/${destLangId}/${myLanguageId}`)
             const jsonRes = await res.json()
             if(!res.ok){
                 throw jsonRes
@@ -45,8 +46,8 @@ function showTranslations(data){
         let thead_tr_thSource = document.createElement('th')
         let thead_tr_thDesc = document.createElement('th')
         
-        thead_tr_thSource.innerHTML = `In ${data.SearchCriteria.SourceLanguage} (${data.SearchCriteria.SourceLanguageCode})`
-        thead_tr_thDesc.innerHTML = `In ${data.SearchCriteria.DestLanguage} (${data.SearchCriteria.DestLanguageCode})`
+        thead_tr_thSource.innerHTML = `${data.SearchCriteria.SourceLanguageTrans} (${data.SearchCriteria.SourceLanguageCode})`
+        thead_tr_thDesc.innerHTML = `${data.SearchCriteria.DestLanguageTrans} (${data.SearchCriteria.DestLanguageCode})`
         thead_tr.appendChild(thead_tr_thSource)
         thead_tr.appendChild(thead_tr_thDesc)
         thead.appendChild(thead_tr)

@@ -4,8 +4,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav mr-3">
-        <li class="nav-item dropdown">
+      <ul class="navbar-nav mr-3 mr-auto">
+        <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle" href="#" id="navbardropMaster" data-toggle="dropdown">
              Master Data
             </a>
@@ -28,15 +28,22 @@
             </div>
           </li>
       </ul>
-      <div class="form-inline d-none">
-          <label for="ispeak" class="mr-sm-2">My Language</label>
-          <select class="form-control" id="ispeak">
-            <% if(locals.MyLanguages!=null){ for ( var i = 0; i < locals.MyLanguages.length; i++ ) { %>
-              <option><%= locals.MyLanguages[i].LanguageName %></option>
-            <% }} %>
-         </select>    
-      </div>
-      <div>
+      <form method="POST" action="/changeMyLanguage" id="form1">
+        <div class="form-inline">
+            <label for="ispeak" class="mr-sm-2"><%= variables.find(x => x.name == 'My Language').text %></label>
+            <select class="form-control" id="ispeak" name="selMyLangugaes" onchange="form1.submit()">
+              <% for ( var i = 0; i < MyLanguages.length; i++ ) { %>
+                <% if(MyLanguageSelected == MyLanguages[i]._id) { %>
+                  <option value="<%= MyLanguages[i]._id %>" selected><%= variables.find(x=> x.name == MyLanguages[i].LanguageName).text %></option>
+                <% } else {%>
+                  <option value="<%= MyLanguages[i]._id %>"><%= variables.find(x=> x.name == MyLanguages[i].LanguageName).text %></option>
+                <% }%>
+              <% } %>
+            </select>    
+          
+        </div>
+      </form>
+      <div> 
         <form>
           <!-- <button>Logout</button> -->
         </form>

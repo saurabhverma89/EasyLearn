@@ -2,25 +2,25 @@
 <script defer src="/static/javascripts/index.js"></script>
 
 <div class="row">
-	
+	<input type="hidden" id="h_myLanguageId" value="<%= MyLanguageSelected %>">
 	<div class="col-lg-5">
 		<div class="form-group">
-			<label for="selCategory">Select Category</label>
+			<label for="selCategory"><%= Variables.find(x=> x.name == 'Select Category').text %></label>
 			<select class="form-control" id="selCategory">
-				<option value="">Plaese Select</option>
+				<option value=""><%= Variables.find(x=> x.name == 'Plaese Select').text %></option>
 				<% if(Categories!=null){ for ( var i = 0; i < Categories.length; i++ ) { if(Categories[i].CategoryName != 'Language'){%>
-					<option value="<%= Categories[i]._id %>"><%= Categories[i].CategoryName %></option>
+					<option value="<%= Categories[i]._id %>"><%= Variables.find(x=> x.name == Categories[i].CategoryName).text %></option>
 				<% }}} %>
 			</select>
 		</div>
 	</div>
 	<div class="col-lg-3">
 		<div class="form-group">
-			<label for="selSourceLang">Translate From</label>
+			<label for="selSourceLang"><%= Variables.find(x=> x.name == 'Translate From').text %></label>
 			<select class="form-control" id="selSourceLang">
-				<option value="">Plaese Select</option>
+				<option value=""><%= Variables.find(x=> x.name == 'Plaese Select').text %></option>
 				<% if(Languages!=null){ for ( var i = 0; i < Languages.length; i++ ) { %>
-					<option value="<%= Languages[i]._id %>"><%= Languages[i].LanguageName %></option>
+					<option value="<%= Languages[i]._id %>"><%= Variables.find(x=> x.name == Languages[i].LanguageName).text %></option>
 				<% }} %>
 			</select>
 		</div>
@@ -30,11 +30,11 @@
 	</div>
 	<div class="col-lg-3">
 		<div class="form-group">
-			<label for="selDestLang">Translate To</label>
+			<label for="selDestLang"><%= Variables.find(x=> x.name == 'Translate Into').text %></label>
 			<select class="form-control" id="selDestLang">
-				<option value="">Plaese Select</option>
+				<option value=""><%= Variables.find(x=> x.name == 'Plaese Select').text %></option>
 				<% if(Languages!=null){ for ( var i = 0; i < Languages.length; i++ ) { %>
-					<option value="<%= Languages[i]._id %>"><%= Languages[i].LanguageName %></option>
+					<option value="<%= Languages[i]._id %>"><%= Variables.find(x=> x.name == Languages[i].LanguageName).text %></option>
 				<% }} %>
 			</select> 
 		</div>

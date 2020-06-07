@@ -1,9 +1,9 @@
 const Request = require("request-promise")
 const apiURL = process.env.EASYELEARN_API_URL
 
-const getTranslations = async (categoryId, sourceLanguageId, destLanguageId) => {
+const getTranslations = async (categoryId, sourceLanguageId, destLanguageId, selectedLanguageId) => {
     let response
-    await Request.get(`${apiURL}translation/${categoryId}/${sourceLanguageId}/${destLanguageId}`, { json:true })
+    await Request.get(`${apiURL}translation/${categoryId}/${sourceLanguageId}/${destLanguageId}/${selectedLanguageId}`, { json:true })
     .then(res => {
         response = res
     })
@@ -91,6 +91,15 @@ const getCategories = async () => {
     try{
         let response =  await Request.get(`${apiURL}category`, { json: true })
         return response
+    }catch(err){
+        throw getError(err)
+    }
+}
+
+const getCategoriesExceptInternal = async () => {
+    try{
+        let response =  await Request.get(`${apiURL}category`, { json: true })
+        return response.filter(x => x.CategoryName[0] != '_')
     }catch(err){
         throw getError(err)
     }
@@ -253,6 +262,25 @@ const deleteWord = async (_id) => {
     }
 }
 
-module.exports = {getTranslations, getLanguages, getLanguageById, createLanguage, updateLanguage, deleteLanguage,
-                    getCategories, getCategoryById, createCategory, updateCategory, deleteCategory,
+const getTranslationsByWords = async (destLanguageId, wordsArray) => {
+    try{
+        let options = {
+            method: 'POST',
+            uri: `${apiURL}translation/${destLanguageId}`,
+            body: {
+                words: wordsArray
+            },
+            json: true,
+        };
+        const response = await Request(options)
+        return response
+    }
+    catch(err){
+        throw getError(err)
+    }
+}
+
+module.exports = {getTranslations, getTranslationsByWords, 
+                    getLanguages, getLanguageById, createLanguage, updateLanguage, deleteLanguage,
+                    getCategories, getCategoriesExceptInternal, getCategoryById, createCategory, updateCategory, deleteCategory,
                     getWordsByCategory, createWord, getWordById, updateWord, deleteWord}
