@@ -100,6 +100,10 @@ let _variables = [
     {
         name: "Plaese Select",
         text: "Plaese Select"
+    },
+    {
+        name: "Welcome to",
+        text: "Welcome to"
     }
 ]
 
