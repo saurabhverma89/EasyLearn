@@ -4,6 +4,31 @@ const selCategory = document.getElementById('selCategory')
 const tblTrans= document.getElementById('tblTrans')
 const divSwapLang = document.getElementById('divSwapLang')
 const myLanguageId = document.getElementById('h_myLanguageId').value
+const tableBox = document.getElementsByClassName('my-table-box')[0]
+const loader = document.getElementsByClassName('loader')[0]
+
+Init()
+
+function Init(){
+    HideTableBox()
+    HideLoader()
+}
+
+function HideTableBox(){
+    tableBox.style.display = 'none'
+}
+
+function ShowTableBox(){
+    tableBox.style.display = 'block'
+}
+
+function HideLoader(){
+    loader.style.display = 'none'
+}
+
+function ShowLoader(){
+    loader.style.display = 'block'
+}
 
 selSourceLang.addEventListener('change', (e)  => {
     getTranslations()
@@ -24,6 +49,8 @@ async function getTranslations(){
     const destLangId = selDestLang.options[selDestLang.selectedIndex].value
     if(categoryId != "" && sourceLangId != "" && destLangId != ""){
         try{
+            ShowTableBox()
+            ShowLoader()
             const res = await fetch(`/getTranslation/${categoryId}/${sourceLangId}/${destLangId}/${myLanguageId}`)
             const jsonRes = await res.json()
             if(!res.ok){
@@ -35,12 +62,14 @@ async function getTranslations(){
         }catch(err){
             console.log(err.message)
         }
+        finally{
+            HideLoader()
+        }
     }
 }
 
 function showTranslations(data){
     try{
-        clearTable()
         let thead = document.createElement('thead')
         let thead_tr = document.createElement('tr')
         let thead_tr_thSource = document.createElement('th')
