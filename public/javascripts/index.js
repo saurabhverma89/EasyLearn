@@ -5,13 +5,14 @@ const tblTrans= document.getElementById('tblTrans')
 const divSwapLang = document.getElementById('divSwapLang')
 const myLanguageId = document.getElementById('h_myLanguageId').value
 const tableBox = document.getElementsByClassName('my-table-box')[0]
-const loader = document.getElementsByClassName('loader')[0]
 
 Init()
 
 function Init(){
     HideTableBox()
     HideLoader()
+    //ShowTableBox()
+    //ShowLoader()
 }
 
 function HideTableBox(){
@@ -20,14 +21,6 @@ function HideTableBox(){
 
 function ShowTableBox(){
     tableBox.style.display = 'block'
-}
-
-function HideLoader(){
-    loader.style.display = 'none'
-}
-
-function ShowLoader(){
-    loader.style.display = 'block'
 }
 
 selSourceLang.addEventListener('change', (e)  => {

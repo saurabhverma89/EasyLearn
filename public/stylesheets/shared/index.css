@@ -55,11 +55,13 @@
 	text-align: center;
 }
 
-#divSwapLang{
-	padding-top: 37px;
-	font-size: 18px;
-	cursor: pointer;
-	color:#666;
+@media (min-width: 576px) {
+	#divSwapLang{
+		padding-top: 37px;
+		font-size: 18px;
+		cursor: pointer;
+		color:#666;
+	}
 }
 
 #divSwapLang:hover{
