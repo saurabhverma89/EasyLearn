@@ -98,7 +98,7 @@ function showTranslations(data){
         thead_tr_thSelected.innerHTML = `${myLanguageName}`
         thead_tr_thSource.innerHTML = `${data.SearchCriteria.SourceLanguageTrans}`// (${data.SearchCriteria.SourceLanguageCode})`
         thead_tr_thDesc.innerHTML = `${data.SearchCriteria.DestLanguageTrans}`// (${data.SearchCriteria.DestLanguageCode})`
-        if(data.SearchCriteria.SourceLanguageId != myLanguageId){
+        if(data.SearchCriteria.SourceLanguageId != myLanguageId  && data.SearchCriteria.DestLanguageId != myLanguageId){
             thead_tr.appendChild(thead_tr_thSelected)
         }
         thead_tr.appendChild(thead_tr_thSource)
@@ -117,7 +117,7 @@ function showTranslations(data){
                 td0.innerHTML = r.Selected
                 td1.innerHTML = r.Source
                 td2.innerHTML = r.Dest
-                if(data.SearchCriteria.SourceLanguageId != myLanguageId){
+                if(data.SearchCriteria.SourceLanguageId != myLanguageId && data.SearchCriteria.DestLanguageId != myLanguageId){
                     tr.appendChild(td0)
                 }
                 tr.appendChild(td1)
