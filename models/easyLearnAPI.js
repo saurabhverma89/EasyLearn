@@ -280,7 +280,16 @@ const getTranslationsByWords = async (destLanguageId, wordsArray) => {
     }
 }
 
+const getLanguageWithNativeName = async () => {
+    try{
+        let response = await Request.get(`${apiURL}languageWithNativeName`,  { json:true })
+        return response
+    }catch(err){
+        throw getError(err)
+    }
+}
+
 module.exports = {getTranslations, getTranslationsByWords, 
                     getLanguages, getLanguageById, createLanguage, updateLanguage, deleteLanguage,
                     getCategories, getCategoriesExceptInternal, getCategoryById, createCategory, updateCategory, deleteCategory,
-                    getWordsByCategory, createWord, getWordById, updateWord, deleteWord}
+                    getWordsByCategory, createWord, getWordById, updateWord, deleteWord, getLanguageWithNativeName}

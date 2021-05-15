@@ -30,16 +30,17 @@
       </ul>
       <form method="POST" action="/changeMyLanguage" id="form1">
         <div class="form-inline">
-            <label for="ispeak" class="mr-sm-2"><%= variables.find(x => x.name == 'My Language').text %></label>
+           
+            <label for="ispeak" class="mr-sm-2"><%= HeaderLocalization.find(x => x.name == 'My Language').text %></label>
             <select class="form-control" id="ispeak" name="selMyLangugaes" onchange="form1.submit()">
               <% for ( var i = 0; i < MyLanguages.length; i++ ) { %>
                 <% if(MyLanguageSelected == MyLanguages[i]._id) { %>
-                  <option value="<%= MyLanguages[i]._id %>" selected><%= variables.find(x=> x.name == MyLanguages[i].LanguageName).text %></option>
+                  <option value="<%= MyLanguages[i]._id %>" selected><%= MyLanguages[i].text %></option>
                 <% } else {%>
-                  <option value="<%= MyLanguages[i]._id %>"><%= variables.find(x=> x.name == MyLanguages[i].LanguageName).text %></option>
+                  <option value="<%= MyLanguages[i]._id %>"><%= MyLanguages[i].text %> (<%= MyLanguages[i].nativeName %>)</option>
                 <% }%>
               <% } %>
-            </select>    
+            </select>   
           
         </div>
       </form>

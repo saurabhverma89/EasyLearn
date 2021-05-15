@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
             Languages : res.Languages,
             Categories : res.Categories,
             Localization : res.Localization,
-            Variables : res.Variables
         })
     }
 })
@@ -76,7 +75,7 @@ async function getLocalization(req, res, next) {
                 }
             }
         }
-        res.Variables = _variables
+        res.Localization = _variables
     }
     catch(err){
         console.log(err)
@@ -90,7 +89,7 @@ let _variables = [
         text: "Select Category"
     },
     {
-        name: "Translate From",
+        name: "Translate From", 
         text: "Translate From"
     },
     {

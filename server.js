@@ -46,34 +46,50 @@ app.listen(process.env.PORT || 3000);
 
 async function getMyLanguages(req, res, next) {
     try{
-        MyLanguages = await easyLearnAPI.getLanguages()
+        let languages = await easyLearnAPI.getLanguages()
         if(req.session.MyLanguageSelected == null){
-            req.session.MyLanguageSelected = MyLanguages.find(x=>x.LanguageName == 'English')._id
+            req.session.MyLanguageSelected = languages.find(x=>x.LanguageName == 'English')._id
         }
-
-        MyLanguages.forEach(l => {
-            if(!_variables.some(x=> x.name == l.LanguageName)){
-                _variables.push({
+        
+        languages.forEach(l => {
+            if(!_myLanguages.some(x=> x.name == l.LanguageName)){
+                _myLanguages.push({
+                    _id: l._id,
                     name: l.LanguageName,
-                    text: l.LanguageName
+                    text: '',
+                    nativeName: ''
                 })
             }
         })
 
-        MyLanguageSelected = req.session.MyLanguageSelected
-        variables =  _variables
-
-        const words = _variables.map(x => x.name)
-        const variableTrans = await easyLearnAPI.getTranslationsByWords(MyLanguageSelected, words)
+        let words = _myLanguages.map(x => x.name)
+        let variableTrans = await easyLearnAPI.getTranslationsByWords(req.session.MyLanguageSelected, words)
         if(variableTrans != null){
             for(let i = 0; i < variableTrans.words.length; i++){
                 if(variableTrans.words[i].translation != ''){
-                    let v = _variables.find(x => x.name == variableTrans.words[i].word).text = variableTrans.words[i].translation
+                    _myLanguages.find(x => x.name == variableTrans.words[i].word).text = variableTrans.words[i].translation
+                }
+            }
+        }
+        
+        words = _variables.map(x => x.name)
+        variableTrans = await easyLearnAPI.getTranslationsByWords(req.session.MyLanguageSelected, words)
+        if(variableTrans != null){
+            for(let i = 0; i < variableTrans.words.length; i++){
+                if(variableTrans.words[i].translation != ''){
+                    _variables.find(x => x.name == variableTrans.words[i].word).text = variableTrans.words[i].translation
                 }
             }
         }
 
-        variables = _variables
+        let languageWithNativeName = await easyLearnAPI.getLanguageWithNativeName()
+        for(let i = 0; i < languageWithNativeName.length; i++){
+            _myLanguages.find(x => x.name == languageWithNativeName[i].languageName).nativeName = languageWithNativeName[i].nativeName
+        }
+
+        MyLanguageSelected = req.session.MyLanguageSelected
+        HeaderLocalization = _variables
+        MyLanguages = _myLanguages
     }
     catch(err){
         console.log(err)
@@ -82,8 +98,10 @@ async function getMyLanguages(req, res, next) {
 } 
 
 let _variables = [
-        {
-            name: "My Language",
-            text: "My Language"
-        }
-    ]
+    {
+        name: "My Language",
+        text: "My Language"
+    }
+]
+
+let _myLanguages = []
