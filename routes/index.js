@@ -101,8 +101,8 @@ let _variables = [
         text: "Plaese Select"
     },
     {
-        name: "Welcome to",
-        text: "Welcome to"
+        name: "Welcome",
+        text: "Welcome"
     }
 ]
 
