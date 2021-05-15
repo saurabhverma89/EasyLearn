@@ -11,6 +11,7 @@ const indexRouter = require('./routes/index')
 const languageRouter = require('./routes/language')
 const categoryRouter = require('./routes/category')
 const wordRouter = require('./routes/word')
+const translateOneToManyRouter = require('./routes/translateOneToMany')
 const easyLearnAPI = require('./models/easyLearnAPI')
 const session = require('express-session')
 
@@ -36,10 +37,11 @@ app.use('/', indexRouter)
 app.use('/language', languageRouter)
 app.use('/category', categoryRouter)
 app.use('/word', wordRouter)
+app.use('/translateOneToMany', translateOneToManyRouter)
 
 app.post('/changeMyLanguage', async (req, res) =>{
     req.session.MyLanguageSelected = req.body.selMyLangugaes
-    res.redirect('/')
+    res.redirect(req.headers.referer)
 })  
 
 app.listen(process.env.PORT || 3000);

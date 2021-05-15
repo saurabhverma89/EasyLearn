@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.17.1",
+    "googletrans": "^1.0.2",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.15",
     "request": "^2.88.2",

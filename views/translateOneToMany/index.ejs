@@ -1,0 +1,30 @@
+<script defer src="/static/javascripts/loader.js"></script>
+<script defer src="/static/javascripts/table.js"></script>
+<script defer src="/static/javascripts/translateOneToMany.js"></script>
+<div class="shadow-none p-4 mb-4 bg-light">
+    <div>
+        <div class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="chkLang_selectAll">
+            <label class="custom-control-label" for="chkLang_selectAll">Select All</label>
+        </div>
+    </div>
+    <div class="mt-2">
+        <% for(let i = 0; i < Languages.length; i++) { if (Languages[i].LanguageName != "English") {%>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input chk-language" id="chkLang_<%= Languages[i]._id %>" value="<%= Languages[i].LanguageCode %>-<%= Languages[i].LanguageName %>">
+                <label class="custom-control-label" for="chkLang_<%= Languages[i]._id %>"><%= Languages[i].LanguageName %></label>
+            </div>
+        <% }} %>
+    </div>
+</div>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Text" id="txtText">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit" id="btnTranslate">Translate</button>
+    </div>
+</div>
+<div class="table-responsive my-table-box">
+    <div class="text-center"><%- include('../partials/loader.ejs') %></div>
+    <table class="table table-striped table-hover table-bordered table-sm my-table" id="tblTrans">
+    </table>
+</div>

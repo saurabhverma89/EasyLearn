@@ -1,10 +1,8 @@
 const selSourceLang = document.getElementById('selSourceLang')
 const selDestLang = document.getElementById('selDestLang')
 const selCategory = document.getElementById('selCategory')
-const tblTrans= document.getElementById('tblTrans')
 const divSwapLang = document.getElementById('divSwapLang')
 const myLanguageId = document.getElementById('h_myLanguageId').value
-const tableBox = document.getElementsByClassName('my-table-box')[0]
 const ispeak = document.getElementById('ispeak')
 const myLanguageName = ispeak.options[ispeak.selectedIndex].text
 
@@ -15,14 +13,6 @@ function Init(){
     HideLoader()
     //ShowTableBox()
     //ShowLoader()
-}
-
-function HideTableBox(){
-    tableBox.style.display = 'none'
-}
-
-function ShowTableBox(){
-    tableBox.style.display = 'block'
 }
 
 function ToggleSourceLanguageDdl(){
@@ -139,10 +129,6 @@ function showTranslations(data){
     catch(err){
         console.error(err)
     }
-}
-
-function clearTable(){
-    tblTrans.innerHTML = ''
 }
 
 divSwapLang.addEventListener('click', (e) => {
